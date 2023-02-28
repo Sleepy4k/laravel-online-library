@@ -11,6 +11,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
+    use ApiRespons;
+
     /**
      * The path to the "home" route for your application.
      *
@@ -44,15 +46,15 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip())->response(function(){
-                return $this->createResponse('Too Many Requests', route('api.landing.index'), [
+            return Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip())->response(function () {
+                return $this->createResponse('Too Many Requests', [
                     'data' => 'too many requests in a given amount of time'
                 ], 429);
             });
         });
 
         RateLimiter::for('web', function (Request $request) {
-            return Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip())->response(function(){
+            return Limit::perMinute(30)->by(optional($request->user())->id ?: $request->ip())->response(function () {
                 abort(429);
             });
         });
