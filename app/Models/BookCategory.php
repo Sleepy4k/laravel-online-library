@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class BookCategory extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
+    use HasFactory, LogsActivity;
 
     /**
      * The table associated with created data.
@@ -40,7 +38,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'book_categories';
 
     /**
      * The primary key associated with the table.
@@ -77,13 +75,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'age',
-        'email',
-        'phone',
-        'gender',
-        'address',
-        'grade_id',
-        'password',
     ];
 
     /**
@@ -100,9 +91,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that aren't mass assignable to determine if this is a date.
@@ -122,15 +111,8 @@ class User extends Authenticatable
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'age' => 'integer',
-        'email' => 'string',
-        'phone' => 'string',
-        'gender' => 'string',
-        'address' => 'string',
-        'grade_id' => 'integer',
-        'password' => 'string',
-        'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**
@@ -149,12 +131,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the grade that owns the user
+     * Get books that belong to the category
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function grade(): BelongsTo
+    public function books(): HasMany
     {
-        return $this->belongsTo(Grade::class, 'grade_id', 'id');
+        return $this->hasMany(Book::class, 'author_id', 'id');
     }
 }

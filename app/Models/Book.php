@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Book extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
+    use HasFactory, LogsActivity;
 
     /**
      * The table associated with created data.
@@ -40,7 +38,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'books';
 
     /**
      * The primary key associated with the table.
@@ -76,14 +74,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'age',
-        'email',
-        'phone',
-        'gender',
-        'address',
-        'grade_id',
-        'password',
+        'title',
+        'image',
+        'year',
+        'description',
+        'author_id',
+        'publisher_id',
+        'category_id',
     ];
 
     /**
@@ -100,9 +97,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that aren't mass assignable to determine if this is a date.
@@ -111,7 +106,7 @@ class User extends Authenticatable
      */
     protected $dates = [
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 
     /**
@@ -121,14 +116,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'age' => 'integer',
-        'email' => 'string',
-        'phone' => 'string',
-        'gender' => 'string',
-        'address' => 'string',
-        'grade_id' => 'integer',
-        'password' => 'string',
+        'title' => 'string',
+        'image' => 'string',
+        'description' => 'string',
+        'author_id' => 'integer',
+        'publisher_id' => 'integer',
+        'category_id' => 'integer',
         'created_at' => 'datetime:Y-m-d',
         'updated_at' => 'datetime:Y-m-d',
     ];
@@ -149,12 +142,32 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the grade that owns the user
+     * Get the author that owns the book
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function grade(): BelongsTo
+    public function author(): BelongsTo
     {
-        return $this->belongsTo(Grade::class, 'grade_id', 'id');
+        return $this->belongsTo(Author::class, 'author_id', 'id');
+    }
+
+    /**
+     * Get the category that owns the book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(BookCategory::class, 'category_id', 'id');
+    }
+
+    /**
+     * Get the publisher that owns the book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Publisher::class, 'publisher_id', 'id');
     }
 }

@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        $genders = config()->get('gender.list');
+
+        Schema::create('users', function (Blueprint $table) use ($genders) {
             $table->id();
             $table->string('name');
+            $table->bigInteger('age');
             $table->string('email')->unique();
+            $table->string('phone');
+            $table->enum('gender',  $genders);
+            $table->text('address');
+            $table->bigInteger('grade_id');
             $table->string('password');
             $table->timestamps();
         });

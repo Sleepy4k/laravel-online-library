@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Application extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
+    use HasFactory, LogsActivity, HasRoles;
 
     /**
      * The table associated with created data.
@@ -40,7 +38,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'applications';
 
     /**
      * The primary key associated with the table.
@@ -76,14 +74,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'age',
-        'email',
-        'phone',
-        'gender',
-        'address',
-        'grade_id',
-        'password',
+        'app_name',
+        'app_icon',
+        'meta_author',
+        'meta_description',
+        'meta_keywords'
     ];
 
     /**
@@ -100,9 +95,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that aren't mass assignable to determine if this is a date.
@@ -111,7 +104,7 @@ class User extends Authenticatable
      */
     protected $dates = [
         'created_at',
-        'updated_at',
+        'updated_at'
     ];
 
     /**
@@ -121,16 +114,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'age' => 'integer',
-        'email' => 'string',
-        'phone' => 'string',
-        'gender' => 'string',
-        'address' => 'string',
-        'grade_id' => 'integer',
-        'password' => 'string',
+        'app_name' => 'string',
+        'app_icon' => 'string',
+        'meta_author' => 'string',
+        'meta_description' => 'string',
+        'meta_keywords' => 'string',
         'created_at' => 'datetime:Y-m-d',
-        'updated_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d'
     ];
 
     /**
@@ -146,15 +136,5 @@ class User extends Authenticatable
             ->useLogName('model')
             ->setDescriptionForEvent(fn (string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
             ->dontSubmitEmptyLogs();
-    }
-
-    /**
-     * Get the grade that owns the user
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function grade(): BelongsTo
-    {
-        return $this->belongsTo(Grade::class, 'grade_id', 'id');
     }
 }
