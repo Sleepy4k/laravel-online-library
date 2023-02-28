@@ -6,6 +6,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -74,7 +75,16 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'age',
+        'email',
+        'phone',
+        'gender',
+        'address',
+        'grade_id',
+        'password',
+    ];
 
     /**
      * The attributes that aren't mass assignable.
@@ -92,23 +102,35 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
-    
+
     /**
      * The attributes that aren't mass assignable to determine if this is a date.
      *
      * @var array
      */
-    protected $dates = [];
-    
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'id' => 'integer',
+        'name' => 'string',
+        'age' => 'integer',
+        'email' => 'string',
+        'phone' => 'string',
+        'gender' => 'string',
+        'address' => 'string',
+        'grade_id' => 'integer',
+        'password' => 'string',
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
     ];
 
     /**
@@ -119,10 +141,20 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-                            ->logOnly(['name', 'username'])
-                            ->logOnlyDirty()
-                            ->useLogName('Users')
-                            ->setDescriptionForEvent(fn(string $eventName) => "model Users successfully {$eventName}")
-                            ->dontSubmitEmptyLogs();
+            ->logOnly($this->fillable)
+            ->logOnlyDirty()
+            ->useLogName('model')
+            ->setDescriptionForEvent(fn (string $eventName) => trans('model.activity.description', ['model' => $this->table, 'event' => $eventName]))
+            ->dontSubmitEmptyLogs();
+    }
+
+    /**
+     * Get the grade that owns the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function grade(): BelongsTo
+    {
+        return $this->belongsTo(Grade::class, 'grade_id', 'id');
     }
 }
