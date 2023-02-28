@@ -158,4 +158,116 @@ return [
 
         'store' => env('PERMISSION_CACHE_STORE', 'default'),
     ],
+
+    'seeder' => [
+        'list' => [
+            'permission.index',
+            'permission.create',
+            'permission.store',
+            'permission.show',
+            'permission.edit',
+            'permission.update',
+            'permission.destroy',
+
+            'role.index',
+            'role.create',
+            'role.store',
+            'role.show',
+            'role.edit',
+            'role.update',
+            'role.destroy',
+
+            'user.index',
+            'user.create',
+            'user.store',
+            'user.show',
+            'user.edit',
+            'user.update',
+            'user.destroy',
+
+            'translate.index',
+            'translate.create',
+            'translate.store',
+            'translate.show',
+            'translate.edit',
+            'translate.update',
+            'translate.destroy',
+
+            'application.index',
+            'application.create',
+            'application.store',
+
+            'auth.index',
+            'auth.show',
+
+            'model.index',
+            'model.show',
+
+            'query.index',
+            'query.show',
+
+            'system.index',
+            'system.show',
+
+            'dashboard.index',
+            'dashboard.store'
+        ],
+        'role' => [
+            'admin' => [
+                'permission.index',
+                'permission.create',
+                'permission.store',
+                'permission.show',
+                'permission.edit',
+                'permission.update',
+                'permission.destroy',
+
+                'role.index',
+                'role.create',
+                'role.store',
+                'role.show',
+                'role.edit',
+                'role.update',
+                'role.destroy',
+
+                'user.index',
+                'user.create',
+                'user.store',
+                'user.show',
+                'user.edit',
+                'user.update',
+                'user.destroy',
+
+                'translate.index',
+                'translate.create',
+                'translate.store',
+                'translate.show',
+                'translate.edit',
+                'translate.update',
+                'translate.destroy',
+
+                'application.index',
+                'application.create',
+                'application.store',
+
+                'auth.index',
+                'auth.show',
+
+                'model.index',
+                'model.show',
+
+                'query.index',
+                'query.show',
+
+                'system.index',
+                'system.show',
+
+                'dashboard.index'
+            ],
+            'user' => [
+                'dashboard.index',
+                'dashboard.store'
+            ]
+        ]
+    ]
 ];
