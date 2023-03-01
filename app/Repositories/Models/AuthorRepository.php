@@ -16,7 +16,7 @@ class AuthorRepository extends EloquentRepository implements AuthorInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param Model $model
      */
     public function __construct(Author $model)

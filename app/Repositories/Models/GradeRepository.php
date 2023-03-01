@@ -16,7 +16,7 @@ class GradeRepository extends EloquentRepository implements GradeInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param Model $model
      */
     public function __construct(Grade $model)

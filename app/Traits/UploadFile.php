@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
-  
-trait UploadFile 
+
+trait UploadFile
 {
     use SystemLog;
 
@@ -28,7 +28,7 @@ trait UploadFile
      * @var string
      */
     protected $imagePath = 'image';
-    
+
     /**
      * Set path excel folder when upload image.
      *
@@ -60,15 +60,15 @@ trait UploadFile
     {
         try {
             if ($type == 'image') {
-                return '/'.$this->baseDisk.'/'.$this->imagePath.'/';
+                return '/' . $this->baseDisk . '/' . $this->imagePath . '/';
             } elseif ($type == 'excel') {
-                return '/'.$this->baseDisk.'/'.$this->excelPath.'/';
+                return '/' . $this->baseDisk . '/' . $this->excelPath . '/';
             } elseif ($type == 'pdf') {
-                return '/'.$this->baseDisk.'/'.$this->pdfPath.'/';
+                return '/' . $this->baseDisk . '/' . $this->pdfPath . '/';
             } elseif ($type == 'qrcode') {
-                return '/'.$this->baseDisk.'/'.$this->qrcodePath.'/';
+                return '/' . $this->baseDisk . '/' . $this->qrcodePath . '/';
             } else {
-                return '/'.$this->baseDisk.'/'.$this->unkownPath.'/';
+                return '/' . $this->baseDisk . '/' . $this->unkownPath . '/';
             }
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
@@ -88,15 +88,15 @@ trait UploadFile
     {
         try {
             $user = request()->user();
-            $clientCode = $user->id.'_'.$user->created_at->format('dmY');
-            $fileName = preg_replace('/\s+/', '_', uniqid().'_'.date('dmY').'_'.$clientCode.'.'.$file->getClientOriginalExtension());
-    
+            $clientCode = $user->id . '_' . $user->created_at->format('dmY');
+            $fileName = preg_replace('/\s+/', '_', uniqid() . '_' . date('dmY') . '_' . $clientCode . '.' . $file->getClientOriginalExtension());
+
             if ($this->checkFile($type, $fileName)) {
                 return $this->putFile($type, $file);
             }
-            
+
             $file->storeAs($this->storageDisk($type), $fileName);
-                
+
             return $fileName;
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
@@ -107,7 +107,7 @@ trait UploadFile
 
     /**
      * Delete file in storage app
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @return void
@@ -116,7 +116,7 @@ trait UploadFile
     {
         try {
             if ($this->checkFile($type, $file)) {
-                Storage::delete($this->storageDisk($type).$file);
+                Storage::delete($this->storageDisk($type) . $file);
 
                 return true;
             }
@@ -124,14 +124,14 @@ trait UploadFile
             return false;
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
 
     /**
      * Check file in storage app
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @return void
@@ -139,21 +139,21 @@ trait UploadFile
     protected function checkFile($type, $file)
     {
         try {
-            if (Storage::exists($this->storageDisk($type).$file)) {
+            if (Storage::exists($this->storageDisk($type) . $file)) {
                 return true;
             }
 
             return false;
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return null;
         }
     }
 
     /**
      * Save single file to storage app
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @return void
@@ -164,18 +164,18 @@ trait UploadFile
             if (is_null($file)) {
                 return null;
             }
-            
+
             return $this->putFile($type, $file);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return null;
         }
     }
 
     /**
      * Update old file with the new one
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @param mixed $old_file
@@ -191,20 +191,20 @@ trait UploadFile
             if (!$this->checkFile($type, $old_file)) {
                 return $this->putFile($type, $file);
             }
-            
+
             $this->deleteFile($type, $old_file);
 
             return $this->updateSingleFile($type, $file, $old_file);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return null;
         }
     }
 
     /**
      * Save multiple file at once
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @return void
@@ -221,7 +221,7 @@ trait UploadFile
             if (!is_array($files)) {
                 return $this->putFile($type, $files);
             }
-            
+
             foreach ($files as $file) {
                 $data[] = $this->putFile($type, $file);
             }
@@ -229,14 +229,14 @@ trait UploadFile
             return $data;
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return $data;
         }
     }
 
     /**
      * Update multiple file at once
-     * 
+     *
      * @param string $type
      * @param mixed $file
      * @param mixed $old_file
@@ -264,11 +264,11 @@ trait UploadFile
                     $data[] = $this->putFile($type, $file);
                 }
             }
-            
+
             return $data;
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return $data;
         }
     }

@@ -7,7 +7,7 @@ use App\Traits\ApiRespons;
 class ApiController extends Controller
 {
     use ApiRespons;
-    
+
     /**
      * Handler try catch error.
      *

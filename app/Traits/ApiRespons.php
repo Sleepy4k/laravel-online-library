@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace App\Traits;
 
 use Illuminate\Http\Response;
 
-trait ApiRespons 
+trait ApiRespons
 {
     use SystemLog;
 
@@ -92,7 +92,7 @@ trait ApiRespons
             }
 
             static::$formatter['metadata']['total_data'] = isset($data['total_data']) ? $data['total_data'] : (isset($data['data']) ? (is_countable($data['data']) ? count($data['data']) : (($data['data'] == "") ? 0 : 1)) : 0);
-            
+
             return response()->json(static::$formatter, $code);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', 'API | ' . $th->getMessage());

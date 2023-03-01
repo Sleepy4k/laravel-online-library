@@ -16,7 +16,7 @@ class AuditRepository extends EloquentRepository implements AuditInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(Activity $model)

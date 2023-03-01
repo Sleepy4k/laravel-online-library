@@ -19,14 +19,14 @@ class RoleRepository extends EloquentRepository implements RoleInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(Role $model)
     {
         $this->model = $model;
     }
-    
+
     /**
      * Create a model.
      *
@@ -38,24 +38,24 @@ class RoleRepository extends EloquentRepository implements RoleInterface
         try {
             if (array_key_exists('permission', $payload)) {
                 $permission = $payload['permission'];
-    
+
                 unset($payload['permission']);
             }
-    
+
             $model = $this->model->create($payload);
-    
+
             if (!empty($permission)) {
                 $model->syncPermissions($permission);
             }
-    
+
             return $model->fresh();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Update existing model.
      *
@@ -68,20 +68,20 @@ class RoleRepository extends EloquentRepository implements RoleInterface
         try {
             if (array_key_exists('permission', $payload)) {
                 $permission = $payload['permission'];
-    
+
                 unset($payload['permission']);
             }
-    
+
             $model = $this->findById($modelId);
-    
+
             if (!empty($permission)) {
                 $model->syncPermissions($permission);
             }
-    
+
             return $model->update($payload);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }

@@ -19,14 +19,14 @@ class LanguageRepository extends EloquentRepository implements LanguageInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(LanguageLine $model)
     {
         $this->model = $model;
     }
-    
+
     /**
      * Create a model.
      *
@@ -43,21 +43,21 @@ class LanguageRepository extends EloquentRepository implements LanguageInterface
                     'id' => $payload['lang_id'],
                     'en' => $payload['lang_en']
                 ];
-        
+
                 unset($payload['lang_id']);
                 unset($payload['lang_en']);
             }
-    
+
             $model = $this->model->create($payload);
-    
+
             return $model->fresh();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Update existing model.
      *
@@ -69,23 +69,23 @@ class LanguageRepository extends EloquentRepository implements LanguageInterface
     {
         try {
             $payload['text'] = [];
-    
+
             if (array_key_exists('lang_id', $payload) && array_key_exists('lang_en', $payload)) {
                 $payload['text'] = [
                     'id' => $payload['lang_id'],
                     'en' => $payload['lang_en']
                 ];
-        
+
                 unset($payload['lang_id']);
                 unset($payload['lang_en']);
             }
-            
+
             $model = $this->findById($modelId);
-    
+
             return $model->update($payload);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
