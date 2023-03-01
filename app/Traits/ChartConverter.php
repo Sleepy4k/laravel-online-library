@@ -1,10 +1,10 @@
 <?php
-  
+
 namespace App\Traits;
 
 use Illuminate\Support\Facades\DB;
 
-trait ChartConvert
+trait ChartConverter
 {
     use SystemLog;
 
@@ -23,7 +23,7 @@ trait ChartConvert
         try {
             $year = date('Y');
 
-            for($i = 1; $i <= 12; $i++){
+            for ($i = 1; $i <= 12; $i++) {
                 if ($raw == null) {
                     $data[] = DB::table($table)->whereMonth($cause, $i)->whereYear($cause, $year)->count();
                 } else {
@@ -33,7 +33,7 @@ trait ChartConvert
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
         }
-        
+
         return $data;
     }
 
@@ -53,7 +53,7 @@ trait ChartConvert
         try {
             $year = date('Y');
 
-            for($i = 1; $i <= 12; $i++){
+            for ($i = 1; $i <= 12; $i++) {
                 if ($type == 'avg') {
                     $data[] = floatval(DB::table($table)->whereMonth($cause, $i)->whereYear($cause, $year)->avg($raw));
                 } elseif ($type == 'sum') {
