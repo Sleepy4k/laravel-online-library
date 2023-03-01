@@ -61,12 +61,14 @@ Route::middleware('auth:sanctum')->group(function () {
         'publishers' => 'PublisherController',
     ]);
 
-    Route::prefix('audit')->apiResources([
-        'auth' => 'Audit\AuthController',
-        'model' => 'Audit\ModelController',
-        'query' => 'Audit\QueryController',
-        'system' => 'Audit\SystemController'
-    ], ['only' => ['index', 'show']]);
+    Route::prefix('audit')->group(function () {
+        Route::apiResources([
+            'auth' => 'Audit\AuthController',
+            'model' => 'Audit\ModelController',
+            'query' => 'Audit\QueryController',
+            'system' => 'Audit\SystemController'
+        ], ['only' => ['index', 'show']]);
+    });
 });
 
 /*
