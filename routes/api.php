@@ -23,11 +23,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', fn () => response()->json([
-    "status" => "success",
-    "message" => "Hello World",
-    "data" => []
-], 200))->name('landing.index');
+Route::get('/', 'LandingController@index')->name('landing.index');
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +35,9 @@ Route::get('/', fn () => response()->json([
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::middleware('guest')->group(function() {
-    // Todo
+Route::middleware('guest')->group(function () {
+    Route::post('login', 'Auth\LoginController@store')->name('login.store');
+    Route::post('register', 'Auth\RegisterController@store')->name('register.store');
 });
 
 /*
@@ -53,22 +50,33 @@ Route::middleware('guest')->group(function() {
 | user who had obtained their sanctum token from login API!
 */
 
-Route::middleware('auth:sanctum')->group(function() {
-    // Todo
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('users', 'UserController')->only('index');
+    Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
+
+    Route::apiResources([
+        'books' => 'BookController',
+        'authors' => 'AuthorController',
+        'categories' => 'CategoryController',
+        'publishers' => 'PublisherController',
+    ]);
+
+    Route::prefix('audit')->apiResources([
+        'auth' => 'Audit\AuthController',
+        'model' => 'Audit\ModelController',
+        'query' => 'Audit\QueryController',
+        'system' => 'Audit\SystemController'
+    ], ['only' => ['index', 'show']]);
 });
 
 /*
 |--------------------------------------------------------------------------
 | Fallback Route
 |--------------------------------------------------------------------------
-| 
+|
 | Please don't touch the code below unless you know what you're doing.
 | Also keep in mind to put this code at the bottom of the route for any route
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{links}', fn () => response()->json([
-    "status" => "error",
-    "message" => "route not found",
-    "data" => []
-], 404))->where('links', '.*');
+Route::any('{links}', 'FallbackController@index')->where('links', '.*');

@@ -23,7 +23,13 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', fn () => view('welcome'))->name('landing.index');
+Route::get('/', 'LandingController@index')->name('landing.index');
+Route::resources([
+    'books' => 'User\BookController',
+    'authors' => 'User\AuthorController',
+    'categories' => 'User\CategoryController',
+    'publishers' => 'User\PublisherController',
+], ['only' => ['index', 'show']]);
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +41,11 @@ Route::get('/', fn () => view('welcome'))->name('landing.index');
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::middleware('guest')->group(function() {
-    // Todo
+Route::middleware('guest')->group(function () {
+    Route::resources([
+        'login' => 'Auth\LoginController',
+        'register' => 'Auth\RegisterController',
+    ], ['only' => ['index', 'store']]);
 });
 
 /*
@@ -49,6 +58,40 @@ Route::middleware('guest')->group(function() {
 | user who had obtained their sanctum token from login API!
 */
 
-Route::middleware('auth')->group(function() {
-    // Todo
+Route::middleware('auth')->group(function () {
+    Route::singleton('profile', 'User\ProfileController');
+    Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
+    Route::resource('borrow', 'User\BorrowController')->only('index', 'show', 'destroy');
+
+    Route::resources([
+        'books' => 'User\BookController',
+        'history' => 'User\HistoryController',
+    ], ['only' => ['index', 'show']]);
+
+    Route::middleware('admin')->as('admin.')->group(function () {
+        Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard.index');
+
+        Route::prefix('main')->resources([
+            'books' => 'Admin\BookController',
+            'authors' => 'Admin\AuthorController',
+            'categories' => 'Admin\CategoryController',
+            'publishers' => 'Admin\PublisherController',
+            'borrow' => 'Admin\BorrowController',
+            'history' => 'Admin\HistoryController',
+        ]);
+
+        Route::prefix('admin')->resources([
+            'users' => 'Admin\UserController',
+            'roles' => 'Admin\RoleController',
+            'permissions' => 'Admin\PermissionController',
+            'application' => 'Admin\ApplicationController',
+        ]);
+
+        Route::prefix('system')->resources([
+            'auth' => 'Admin\AuthController',
+            'model' => 'Admin\ModelController',
+            'query' => 'Admin\QueryController',
+            'system' => 'Admin\SystemController',
+        ], ['only' => ['index', 'show']]);
+    });
 });
