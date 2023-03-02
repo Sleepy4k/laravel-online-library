@@ -51,14 +51,14 @@ Route::middleware('guest')->group(function () {
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('users', 'UserController')->only('index');
+    Route::get('profile', 'Main\ProfileController@index')->name('profile.index');
     Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
 
     Route::apiResources([
-        'books' => 'BookController',
-        'authors' => 'AuthorController',
-        'categories' => 'CategoryController',
-        'publishers' => 'PublisherController',
+        'books' => 'Main\BookController',
+        'authors' => 'Main\AuthorController',
+        'categories' => 'Main\CategoryController',
+        'publishers' => 'Main\PublisherController',
     ]);
 
     Route::prefix('audit')->group(function () {
@@ -81,4 +81,4 @@ Route::middleware('auth:sanctum')->group(function () {
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{links}', 'FallbackController@index')->where('links', '.*');
+Route::any('{links}', 'Error\FallbackController@index')->where('links', '.*');
