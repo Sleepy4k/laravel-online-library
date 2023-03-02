@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', 'LandingController@index')->name('landing.index');
+Route::get('/', 'LandingController')->name('landing');
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +36,8 @@ Route::get('/', 'LandingController@index')->name('landing.index');
 */
 
 Route::middleware('guest')->group(function () {
-    Route::post('login', 'Auth\LoginController@store')->name('login.store');
-    Route::post('register', 'Auth\RegisterController@store')->name('register.store');
+    Route::post('login', 'Auth\LoginController')->name('login');
+    Route::post('register', 'Auth\RegisterController')->name('register');
 });
 
 /*
@@ -51,8 +51,8 @@ Route::middleware('guest')->group(function () {
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('profile', 'Main\ProfileController@index')->name('profile.index');
-    Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
+    Route::post('logout', 'Auth\LogoutController')->name('logout');
+    Route::get('profile', 'Main\ProfileController')->name('profile');
 
     Route::apiResources([
         'books' => 'Main\BookController',
@@ -81,4 +81,4 @@ Route::middleware('auth:sanctum')->group(function () {
 | listed below this code will not function or listed properly.
 */
 
-Route::any('{links}', 'Error\FallbackController@index')->where('links', '.*');
+Route::any('{links}', 'Error\FallbackController')->where('links', '.*');
