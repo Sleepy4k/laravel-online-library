@@ -36,6 +36,8 @@ class UserRepository extends EloquentRepository implements UserInterface
     public function create(array $payload): ?Model
     {
         try {
+            $role = null;
+
             if (array_key_exists('role', $payload)) {
                 $role = $payload['role'];
 
