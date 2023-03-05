@@ -16,7 +16,7 @@ class BookCategoryRepository extends EloquentRepository implements BookCategoryI
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param Model $model
      */
     public function __construct(BookCategory $model)

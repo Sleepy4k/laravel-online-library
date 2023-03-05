@@ -31,10 +31,10 @@ class EventServiceProvider extends ServiceProvider
         // Models Observer
         Models\User::observe(Observers\UserObserver::class);
         Models\Application::observe(Observers\ApplicationObserver::class);
-        
+
         // Database Query
         Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-            Log::channel('query')->info('query : '.$query->sql.' | time '.$query->time.' | connection '.$query->connection->getName());
+            Log::channel('query')->info('query : ' . $query->sql . ' | time ' . $query->time . ' | connection ' . $query->connection->getName());
         });
     }
 

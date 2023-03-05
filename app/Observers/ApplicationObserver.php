@@ -19,7 +19,7 @@ class ApplicationObserver
             Cache::forget('application.1');
         }
 
-        Cache::put('application.1', $application, now()->addDays(rand(1,2)));
+        Cache::put('application.1', $application, now()->addDays(rand(1, 2)));
     }
 
     /**
@@ -34,6 +34,6 @@ class ApplicationObserver
             Cache::forget('application.1');
         }
 
-        Cache::put('application.1', $application, now()->addDays(rand(1,2)));
+        Cache::put('application.1', $application, now()->addDays(rand(1, 2)));
     }
 }

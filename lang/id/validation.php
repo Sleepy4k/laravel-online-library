@@ -122,7 +122,7 @@ return [
     | Baris Bahasa untuk Validasi Kustom
     |---------------------------------------------------------------------------------------
     |
-    | Di sini Anda dapat menentukan pesan validasi untuk atribut sesuai keinginan dengan menggunakan 
+    | Di sini Anda dapat menentukan pesan validasi untuk atribut sesuai keinginan dengan menggunakan
     | konvensi "attribute.rule" dalam penamaan barisnya. Hal ini mempercepat dalam menentukan
     | baris bahasa kustom yang spesifik untuk aturan atribut yang diberikan.
     |

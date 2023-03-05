@@ -18,7 +18,7 @@ class EloquentRepository implements EloquentInterface
 
     /**
      * Base respository constructor.
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(Model $model)
@@ -94,7 +94,7 @@ class EloquentRepository implements EloquentInterface
             return $model->select($columns)->paginate($paginate);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
@@ -110,11 +110,11 @@ class EloquentRepository implements EloquentInterface
             return $this->model->onlyTrashed()->get();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Find model by id.
      *
@@ -130,11 +130,11 @@ class EloquentRepository implements EloquentInterface
             return $this->model->select($columns)->with($relations)->findOrFail($modelId)->append($appends);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Find model by custom id.
      *
@@ -150,7 +150,7 @@ class EloquentRepository implements EloquentInterface
             return $this->model->select($columns)->with($relations)->where($wheres)->firstOrFail();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
@@ -167,11 +167,11 @@ class EloquentRepository implements EloquentInterface
             return $this->model->withTrashed()->findOrFail($modelId);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Find trashed model by custom id.
      *
@@ -184,7 +184,7 @@ class EloquentRepository implements EloquentInterface
             return $this->model->withTrashed()->where($wheres)->firstOrFail();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
@@ -201,11 +201,11 @@ class EloquentRepository implements EloquentInterface
             return $this->model->onlyTrashed()->findOrFail($modelId);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Find only trashed model by custom id.
      *
@@ -218,7 +218,7 @@ class EloquentRepository implements EloquentInterface
             return $this->model->onlyTrashed()->where($wheres)->firstOrFail();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
@@ -233,15 +233,15 @@ class EloquentRepository implements EloquentInterface
     {
         try {
             $model = $this->model->create($payload);
-    
+
             return $model->fresh();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Update existing model.
      *
@@ -253,15 +253,15 @@ class EloquentRepository implements EloquentInterface
     {
         try {
             $model = $this->findById($modelId);
-    
+
             return $model->update($payload);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Delete model by id.
      *
@@ -274,11 +274,11 @@ class EloquentRepository implements EloquentInterface
             return $this->findById($modelId)->delete();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Restore model by id.
      *
@@ -291,11 +291,11 @@ class EloquentRepository implements EloquentInterface
             return $this->findOnlyTrashedById($modelId)->restore();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Permanently delete model by id.
      *
@@ -308,7 +308,7 @@ class EloquentRepository implements EloquentInterface
             return $this->findTrashedById($modelId)->forceDelete();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }

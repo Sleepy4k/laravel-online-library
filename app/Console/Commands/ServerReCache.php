@@ -59,7 +59,7 @@ class ServerReCache extends Command
 
         Artisan::call('view:cache');
         $this->info('Blade templates cached successfully!');
-        
+
         Artisan::call('event:cache');
         $this->info('Events cached successfully!');
 

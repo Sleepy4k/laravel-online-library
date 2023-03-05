@@ -2,7 +2,7 @@
 
 /**
  * Replace null varible to empty string
- * 
+ *
  * @param mixed $varible
  * @return string
  */

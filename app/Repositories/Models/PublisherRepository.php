@@ -16,7 +16,7 @@ class PublisherRepository extends EloquentRepository implements PublisherInterfa
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param Model $model
      */
     public function __construct(Publisher $model)
