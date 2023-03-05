@@ -57,8 +57,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'books' => 'Main\BookController',
         'authors' => 'Main\AuthorController',
-        'categories' => 'Main\CategoryController',
         'publishers' => 'Main\PublisherController',
+        'categories' => 'Main\BookCategoryController',
     ]);
 
     Route::prefix('audit')->group(function () {
