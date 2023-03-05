@@ -18,7 +18,7 @@ class Jsonify
     {
         if (config()->get('api.enable_header')) {
             $request->headers->set('Accept', 'application/json');
-            
+
             if (config()->get('api.force_header')) {
                 $request->headers->set('Content-Type', 'application/json');
             }

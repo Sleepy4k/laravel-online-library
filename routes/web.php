@@ -71,27 +71,33 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->as('admin.')->group(function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard.index');
 
-        Route::prefix('main')->resources([
-            'books' => 'Admin\BookController',
-            'authors' => 'Admin\AuthorController',
-            'categories' => 'Admin\CategoryController',
-            'publishers' => 'Admin\PublisherController',
-            'borrow' => 'Admin\BorrowController',
-            'history' => 'Admin\HistoryController',
-        ]);
+        Route::prefix('main')->group(function () {
+            Route::resources([
+                'books' => 'Admin\BookController',
+                'authors' => 'Admin\AuthorController',
+                'categories' => 'Admin\CategoryController',
+                'publishers' => 'Admin\PublisherController',
+                'borrow' => 'Admin\BorrowController',
+                'history' => 'Admin\HistoryController',
+            ]);
+        });
 
-        Route::prefix('admin')->resources([
-            'users' => 'Admin\UserController',
-            'roles' => 'Admin\RoleController',
-            'permissions' => 'Admin\PermissionController',
-            'application' => 'Admin\ApplicationController',
-        ]);
+        Route::prefix('admin')->group(function () {
+            Route::resources([
+                'users' => 'Admin\UserController',
+                'roles' => 'Admin\RoleController',
+                'permissions' => 'Admin\PermissionController',
+                'application' => 'Admin\ApplicationController',
+            ]);
+        });
 
-        Route::prefix('system')->resources([
-            'auth' => 'Admin\AuthController',
-            'model' => 'Admin\ModelController',
-            'query' => 'Admin\QueryController',
-            'system' => 'Admin\SystemController',
-        ], ['only' => ['index', 'show']]);
+        Route::prefix('system')->group(function () {
+            Route::resources([
+                'auth' => 'Admin\AuthController',
+                'model' => 'Admin\ModelController',
+                'query' => 'Admin\QueryController',
+                'system' => 'Admin\SystemController',
+            ], ['only' => ['index', 'show']]);
+        });
     });
 });

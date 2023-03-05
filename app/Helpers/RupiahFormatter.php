@@ -2,7 +2,7 @@
 
 /**
  * Change from plain number to rupiah format
- * 
+ *
  * @param int $integer
  * @return float
  */

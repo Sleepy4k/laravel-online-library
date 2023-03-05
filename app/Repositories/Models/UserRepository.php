@@ -19,14 +19,14 @@ class UserRepository extends EloquentRepository implements UserInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(User $model)
     {
         $this->model = $model;
     }
-    
+
     /**
      * Create a model.
      *
@@ -38,26 +38,26 @@ class UserRepository extends EloquentRepository implements UserInterface
         try {
             if (array_key_exists('role', $payload)) {
                 $role = $payload['role'];
-    
+
                 unset($payload['role']);
             }
-    
+
             $model = $this->model->create($payload);
-    
+
             if (!empty($role)) {
                 $model->assignRole($role);
             } else {
                 $model->assignRole('user');
             }
-    
+
             return $model->fresh();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Update existing model.
      *
@@ -70,20 +70,20 @@ class UserRepository extends EloquentRepository implements UserInterface
         try {
             if (array_key_exists('role', $payload)) {
                 $role = $payload['role'];
-    
+
                 unset($payload['role']);
             }
-    
+
             $model = $this->findById($modelId);
-    
+
             if (!empty($role)) {
                 $model->syncRoles($role);
             }
-    
+
             return $model->update($payload);
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
-            
+
             return false;
         }
     }

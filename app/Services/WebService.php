@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Traits\ChartConvert;
+use App\Traits\ChartConverter;
 
 class WebService extends Service
 {
-    use ChartConvert;
+    use ChartConverter;
 }

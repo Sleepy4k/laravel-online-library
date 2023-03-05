@@ -16,7 +16,7 @@ class BookRepository extends EloquentRepository implements BookInterface
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param Model $model
      */
     public function __construct(Book $model)

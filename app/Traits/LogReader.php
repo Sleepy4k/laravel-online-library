@@ -1,5 +1,5 @@
 <?php
-  
+
 namespace App\Traits;
 
 use Illuminate\Support\Facades\File;
@@ -21,18 +21,18 @@ trait LogReader
 
         try {
             if ($type == 'daily') {
-                $files = glob(storage_path('logs/'.$channel.'-*.log'));
+                $files = glob(storage_path('logs/' . $channel . '-*.log'));
                 $files = array_reverse($files);
             } else {
-                $files = glob(storage_path('logs/'.$channel.'.log'));
+                $files = glob(storage_path('logs/' . $channel . '.log'));
             }
-    
+
             foreach ($files as $file) {
                 $name = explode("/", $file)[1];
-                $size = File::size(storage_path('logs/'.$name));
-                $timestamp = File::lastModified(storage_path('logs/'.$name));
-                $type = File::type(storage_path('logs/'.$name));
-                $content = File::mimeType(storage_path('logs/'.$name));
+                $size = File::size(storage_path('logs/' . $name));
+                $timestamp = File::lastModified(storage_path('logs/' . $name));
+                $type = File::type(storage_path('logs/' . $name));
+                $content = File::mimeType(storage_path('logs/' . $name));
 
                 $logs[] = [
                     'name' => $name,
@@ -60,7 +60,7 @@ trait LogReader
         $logs = [];
 
         try {
-            $content = file_get_contents(storage_path('logs/'.$date.'.log'));
+            $content = file_get_contents(storage_path('logs/' . $date . '.log'));
         } catch (\Throwable $th) {
             return 'file not found in our storage, please double check it';
         }
@@ -81,7 +81,7 @@ trait LogReader
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
         }
-        
+
         return $logs;
     }
 
@@ -102,12 +102,12 @@ trait LogReader
         try {
             if ($type == 'daily') {
                 if ($date) {
-                    $content = file_get_contents(storage_path('logs/'.$channel.'-'.$date.'.log'));
+                    $content = file_get_contents(storage_path('logs/' . $channel . '-' . $date . '.log'));
                 } else {
-                    $content = file_get_contents(storage_path('logs/'.$channel.'-'.dateDmyToYmd(now()).'.log'));
+                    $content = file_get_contents(storage_path('logs/' . $channel . '-' . dateDmyToYmd(now()) . '.log'));
                 }
             } else {
-                $content = file_get_contents(storage_path('logs/'.$channel.'.log'));
+                $content = file_get_contents(storage_path('logs/' . $channel . '.log'));
             }
 
             $pattern = "/^\[(?<date>.*)\]\s(?<env>\w+)\.(?<type>\w+):(?<message>.*)/m";
@@ -126,7 +126,7 @@ trait LogReader
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
         }
-        
+
         return $logs;
     }
 }

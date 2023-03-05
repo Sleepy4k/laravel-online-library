@@ -15,7 +15,7 @@ class PermissionRepository extends EloquentRepository implements PermissionInter
 
     /**
      * Base respository constructor
-     * 
+     *
      * @param  Model  $model
      */
     public function __construct(Permission $model)

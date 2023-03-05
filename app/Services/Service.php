@@ -63,7 +63,7 @@ class Service
 
     /**
      * Model contract constructor.
-     * 
+     *
      * @param  \App\Contracts\Models\UserInterface  $userInterface
      * @param  \App\Contracts\Models\RoleInterface  $roleInterface
      * @param  \App\Contracts\Models\BookInterface  $bookInterface
@@ -88,8 +88,7 @@ class Service
         Models\PermissionInterface $permissionInterface,
         Models\ApplicationInterface $applicationInterface,
         Models\BookCategoryInterface $bookCategoryInterface,
-    )
-    {
+    ) {
         $this->userInterface = $userInterface;
         $this->roleInterface = $roleInterface;
         $this->bookInterface = $bookInterface;
