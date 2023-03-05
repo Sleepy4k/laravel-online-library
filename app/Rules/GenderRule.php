@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Enums\GuardNameEnum;
+use App\Enums\GenderEnum;
 use Illuminate\Contracts\Validation\Rule;
 
 class GenderRule implements Rule
@@ -16,7 +16,7 @@ class GenderRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return in_array(strtolower($value), GuardNameEnum::get('lower'));
+        return in_array(strtolower($value), GenderEnum::get('lower'));
     }
 
     /**
@@ -26,6 +26,6 @@ class GenderRule implements Rule
      */
     public function message()
     {
-        return trans('rule.guard_name.message');
+        return trans('rule.gender.message');
     }
 }
