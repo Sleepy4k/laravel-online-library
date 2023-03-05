@@ -4,14 +4,14 @@ namespace App\Services\Api\Auth;
 
 use App\Services\ApiService;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Resources\ProfileResource;
+use App\Http\Resources\Main\ProfileResource;
 
 class LoginService extends ApiService
 {
     /**
      * Handle the incoming request.
      */
-    public function invoke($request)
+    public function invoke(array $request)
     {
         try {
             $user = $this->userInterface->findByCustomId([['email', $request['email']]]);
@@ -26,7 +26,7 @@ class LoginService extends ApiService
                 'error' => trans('api.login.invalid_password')
             ], 401);
         }
-        
+
         $token = $user->createToken(fake()->userName);
 
         activity('auth')->withProperties($user)->log($user->name . ' berhasil login');

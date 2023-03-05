@@ -58,9 +58,9 @@ class Handler extends ExceptionHandler
             }
 
             if (auth()->check() && auth()->user()->getRoleNames()[0] != 'user') {
-                return to_route('admin.dashboard.index');
+                return to_route('dashboard.index');
             } else {
-                return to_route('main.dashboard.index');
+                return to_route('landing.index');
             }
         });
     }

@@ -246,8 +246,24 @@ return [
             'group' => 'rule',
             'key' => 'language.message',
             'text' => [
-                'id' => 'Data bahas tidak valid',
+                'id' => 'Data bahasa tidak valid',
                 'en' => 'Invalid language data'
+            ]
+        ],
+        [
+            'group' => 'rule',
+            'key' => 'guard_name.message',
+            'text' => [
+                'id' => 'Jenis platform tidak valid',
+                'en' => 'Invalid guard name'
+            ]
+        ],
+        [
+            'group' => 'rule',
+            'key' => 'gender.message',
+            'text' => [
+                'id' => 'Jenis kelamin tidak valid',
+                'en' => 'Invalid gender'
             ]
         ],
         [

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('year');
             $table->text('description');
-            $table->foreignId('author_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('publisher_id')->constrained()->onDelete('cascade');
+            $table->bigInteger('author_id');
+            $table->bigInteger('category_id');
+            $table->bigInteger('publisher_id');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 namespace App\Services\Api\Auth;
 
 use App\Services\ApiService;
-use App\Http\Resources\ProfileResource;
+use App\Http\Resources\Main\ProfileResource;
 
 class LogoutService extends ApiService
 {
