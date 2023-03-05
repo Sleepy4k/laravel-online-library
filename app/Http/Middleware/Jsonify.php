@@ -24,13 +24,6 @@ class Jsonify
             }
         }
 
-        if (auth('sanctum')->check()) {
-            $user = auth('sanctum')->user()->language;
-
-            app()->setlocale($user);
-            $request->headers->set('Accept-Language', $user);
-        }
-
         return $next($request);
     }
 }
