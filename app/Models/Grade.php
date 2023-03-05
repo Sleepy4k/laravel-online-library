@@ -135,6 +135,16 @@ class Grade extends Model
     }
 
     /**
+     * Get the grade name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->grade . ' ' . $this->major . ' ' . $this->class;
+    }
+
+    /**
      * Get users that belong to the grade
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
