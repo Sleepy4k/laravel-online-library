@@ -24,12 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LandingController@index')->name('landing.index');
-Route::resources([
-    'books' => 'User\BookController',
-    'authors' => 'User\AuthorController',
-    'categories' => 'User\CategoryController',
-    'publishers' => 'User\PublisherController',
-], ['only' => ['index', 'show']]);
+Route::resource('books', 'User\BookController')->only('index', 'show');
 
 /*
 |--------------------------------------------------------------------------
@@ -59,16 +54,12 @@ Route::middleware('guest')->group(function () {
 */
 
 Route::middleware('auth')->group(function () {
-    Route::singleton('profile', 'User\ProfileController');
     Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
-    Route::resource('borrow', 'User\BorrowController')->only('index', 'show', 'destroy');
+    Route::resource('profile', 'User\ProfileController')->only('index', 'edit', 'update');
+    Route::resource('loans', 'User\LoanController')->only('index', 'store', 'show', 'destroy');
+    Route::resource('histories', 'User\HistoryController')->only('index', 'show');
 
-    Route::resources([
-        'books' => 'User\BookController',
-        'history' => 'User\HistoryController',
-    ], ['only' => ['index', 'show']]);
-
-    Route::middleware('admin')->as('admin.')->group(function () {
+    Route::middleware('role:admin')->as('admin.')->group(function () {
         Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard.index');
 
         Route::prefix('main')->group(function () {
