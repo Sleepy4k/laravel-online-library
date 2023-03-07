@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 | Remember not to list anything of importance, use authenticate route instead.
 */
 
-Route::get('/', 'LandingController@index')->name('landing.index');
+Route::get('/', 'LandingController')->name('landing');
 Route::resource('books', 'User\BookController')->only('index', 'show');
 
 /*
