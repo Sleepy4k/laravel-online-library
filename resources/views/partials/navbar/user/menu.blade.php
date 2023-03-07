@@ -2,7 +2,7 @@
     <div class="container">
         <ul>
             <li class="menu-item">
-                <a href="{{ route('landing.index') }}" class='menu-link'>
+                <a href="{{ route('landing') }}" class='menu-link'>
                     <span>
                         <i class="bi bi-grid-fill"></i>
                         Dashboard

@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                         <h6 class="text-muted font-semibold">Jumlah Buku</h6>
-                        <h6 class="font-extrabold mb-0">{{ count($books) }}</h6>
+                        <h6 class="font-extrabold mb-0">{{ $books }}</h6>
                     </div>
                 </div>
             </div>
@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                        <h6 class="text-muted font-semibold">Jumlah Siswa</h6>
-                        <h6 class="font-extrabold mb-0">{{ $students }}</h6>
+                        <h6 class="text-muted font-semibold">Jumlah Pengguna</h6>
+                        <h6 class="font-extrabold mb-0">{{ $users }}</h6>
                     </div>
                 </div>
             </div>
