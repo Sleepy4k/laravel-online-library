@@ -54,7 +54,7 @@ Route::middleware('guest')->group(function () {
 */
 
 Route::middleware('auth')->group(function () {
-    Route::post('logout', 'Auth\LogoutController@store')->name('logout.store');
+    Route::post('logout', 'Auth\LogoutController')->name('logout');
     Route::resource('profile', 'User\ProfileController')->only('index', 'edit', 'update');
     Route::resource('loans', 'User\LoanController')->only('index', 'store', 'show', 'destroy');
     Route::resource('histories', 'User\HistoryController')->only('index', 'show');
