@@ -63,7 +63,7 @@
                                     <a class="submenu-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Keluar
                                     </a>
-                                    <form class='d-none' id="logout-form" action="{{ route('logout.store') }}" method="POST">
+                                    <form class='d-none' id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                 </li>
