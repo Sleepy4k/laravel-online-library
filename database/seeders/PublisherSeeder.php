@@ -13,7 +13,7 @@ class PublisherSeeder extends Seeder
     public function run(): void
     {
         if (Publisher::count() == 0) {
-            $publishers = Publisher::factory(10)->make();
+            $publishers = Publisher::factory(25)->make();
 
             Publisher::insert($publishers->toArray());
         }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\WebController;
 use App\Services\Web\Auth\LoginService;
 use App\Http\Requests\Web\Auth\LoginRequest;
 
-class LoginController extends ApiController
+class LoginController extends WebController
 {
     /**
      * @var LoginService
@@ -30,7 +30,7 @@ class LoginController extends ApiController
         try {
             return view('pages.auth.login', $this->service->index());
         } catch (\Throwable $th) {
-            return $this->catchError($th);
+            return $this->redirectError($th);
         }
     }
 
@@ -48,9 +48,9 @@ class LoginController extends ApiController
     public function store(LoginRequest $request)
     {
         try {
-            return $this->service->store($request->validated()) ? to_route('landing.index') : back()->withInput();
+            return $this->service->store($request->validated()) ? to_route('landing') : back()->withInput();
         } catch (\Throwable $th) {
-            return $this->catchError($th);
+            return $this->redirectError($th);
         }
     }
 

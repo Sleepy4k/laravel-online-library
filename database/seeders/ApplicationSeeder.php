@@ -15,9 +15,7 @@ class ApplicationSeeder extends Seeder
     public function run()
     {
         if (Application::count() == 0) {
-            $application = Application::factory(10)->make();
-
-            Application::insert($application->toArray());
+            Application::factory()->create();
         }
     }
 }

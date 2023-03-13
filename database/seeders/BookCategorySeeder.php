@@ -13,7 +13,7 @@ class BookCategorySeeder extends Seeder
     public function run(): void
     {
         if (BookCategory::count() == 0) {
-            $categories = BookCategory::factory(10)->make();
+            $categories = BookCategory::factory(25)->make();
 
             BookCategory::insert($categories->toArray());
         }

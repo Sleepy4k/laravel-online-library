@@ -20,6 +20,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Models\AuditInterface', 'App\Repositories\Models\AuditRepository');
         $this->app->bind('App\Contracts\Models\GradeInterface', 'App\Repositories\Models\GradeRepository');
         $this->app->bind('App\Contracts\Models\AuthorInterface', 'App\Repositories\Models\AuthorRepository');
+        $this->app->bind('App\Contracts\Models\BorrowInterface', 'App\Repositories\Models\BorrowRepository');
         $this->app->bind('App\Contracts\Models\LanguageInterface', 'App\Repositories\Models\LanguageRepository');
         $this->app->bind('App\Contracts\Models\PublisherInterface', 'App\Repositories\Models\PublisherRepository');
         $this->app->bind('App\Contracts\Models\PermissionInterface', 'App\Repositories\Models\PermissionRepository');

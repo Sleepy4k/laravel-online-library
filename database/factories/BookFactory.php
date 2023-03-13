@@ -29,9 +29,9 @@ class BookFactory extends Factory
             'image' => fake()->imageUrl(300, 300, 'books', true, 'Faker', true),
             'year' => fake()->year(),
             'description' => fake()->text(300),
-            'author_id' => rand(1, 10),
-            'publisher_id' => rand(1, 10),
-            'category_id' => rand(1, 10),
+            'author_id' => rand(1, 25),
+            'publisher_id' => rand(1, 25),
+            'category_id' => rand(1, 25),
         ];
     }
 }

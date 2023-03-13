@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Web\Auth;
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\WebController;
 use App\Services\Web\Auth\LogoutService;
 
-class LogoutController extends ApiController
+class LogoutController extends WebController
 {
     /**
      * Handle the incoming request.
@@ -15,9 +15,9 @@ class LogoutController extends ApiController
         try {
             $service->invoke();
 
-            return to_route('landing.index');
+            return to_route('landing');
         } catch (\Throwable $th) {
-            return $this->catchError($th);
+            return $this->redirectError($th);
         }
     }
 }

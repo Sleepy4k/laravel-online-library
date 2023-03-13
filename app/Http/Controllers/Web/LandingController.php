@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\ApiController;
+use App\Services\Web\LandingService;
+use App\Http\Controllers\WebController;
 
-class LandingController extends ApiController
+class LandingController extends WebController
 {
     /**
      * Handle the incoming request.
      */
-    public function index()
+    public function __invoke(LandingService $service)
     {
-        return view('pages.user.main');
+        try {
+            return view('pages.user.main', $service->invoke());
+        } catch (\Throwable $th) {
+            return $this->redirectError($th);
+        }
     }
 }

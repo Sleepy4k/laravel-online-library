@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone');
             $table->enum('gender',  $genders);
             $table->text('address');
-            $table->bigInteger('grade_id');
+            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade');
             $table->string('password');
             $table->timestamps();
         });

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Web\Auth;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\WebController;
 use App\Services\Web\Auth\RegisterService;
 use App\Http\Requests\Web\Auth\RegisterRequest;
 
-class RegisterController extends ApiController
+class RegisterController extends WebController
 {
     /**
      * @var RegisterService
@@ -30,7 +30,7 @@ class RegisterController extends ApiController
         try {
             return view('pages.auth.register', $this->service->index());
         } catch (\Throwable $th) {
-            return $this->catchError($th);
+            return $this->redirectError($th);
         }
     }
 
@@ -50,7 +50,7 @@ class RegisterController extends ApiController
         try {
             return $this->service->store($request->validated()) ? to_route('login.index') : back()->withInput();
         } catch (\Throwable $th) {
-            return $this->catchError($th);
+            return $this->redirectError($th);
         }
     }
 

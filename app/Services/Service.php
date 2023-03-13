@@ -37,6 +37,11 @@ class Service
     protected $authorInterface;
 
     /**
+     * @var borrowInterface
+     */
+    protected $borrowInterface;
+
+    /**
      * @var languageInterface
      */
     protected $languageInterface;
@@ -70,6 +75,7 @@ class Service
      * @param  \App\Contracts\Models\AuditInterface  $auditInterface
      * @param  \App\Contracts\Models\GradeInterface  $gradeInterface
      * @param  \App\Contracts\Models\AuthorInterface  $authorInterface
+     * @param  \App\Contracts\Models\BorrowInterface  $borrowInterface
      * @param  \App\Contracts\Models\LanguageInterface  $languageInterface
      * @param  \App\Contracts\Models\PublisherInterface  $publisherInterface
      * @param  \App\Contracts\Models\PermissionInterface  $permissionInterface
@@ -83,6 +89,7 @@ class Service
         Models\AuditInterface $auditInterface,
         Models\GradeInterface $gradeInterface,
         Models\AuthorInterface $authorInterface,
+        Models\BorrowInterface $borrowInterface,
         Models\LanguageInterface $languageInterface,
         Models\PublisherInterface $publisherInterface,
         Models\PermissionInterface $permissionInterface,
@@ -95,6 +102,7 @@ class Service
         $this->auditInterface = $auditInterface;
         $this->gradeInterface = $gradeInterface;
         $this->authorInterface = $authorInterface;
+        $this->borrowInterface = $borrowInterface;
         $this->languageInterface = $languageInterface;
         $this->publisherInterface = $publisherInterface;
         $this->permissionInterface = $permissionInterface;
