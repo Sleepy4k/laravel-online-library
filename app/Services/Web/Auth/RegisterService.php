@@ -11,7 +11,10 @@ class RegisterService extends WebService
      */
     public function index()
     {
-        return [];
+        return [
+            'genders' => config('gender.list'),
+            'grades' => $this->gradeInterface->all()
+        ];
     }
 
     /**
@@ -26,6 +29,6 @@ class RegisterService extends WebService
             ->withProperties($user)
             ->log($user->name . ' registered.');
 
-        return;
+        return true;
     }
 }

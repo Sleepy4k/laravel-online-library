@@ -12,11 +12,11 @@ class LandingService extends WebService
     public function invoke()
     {
         return [
-            'books' => $this->bookInterface->all(['*'], ['authors', 'publisher', 'categories']),
+            'books' => $this->bookInterface->all(['*'], ['author', 'publisher', 'category']),
             'users' => $this->userInterface->all(['id'])->count(),
             'authors' => $this->authorInterface->all(['id'])->count(),
             'publisher' => $this->publisherInterface->all(['id'])->count(),
-            'categories' => $this->bookCategoryInterface->all(['*'], ['books']),
+            'categories' => $this->bookCategoryInterface->paginate(10, ['*'], ['books']),
             'total_book' => $this->getTableData('books')
         ];
     }
