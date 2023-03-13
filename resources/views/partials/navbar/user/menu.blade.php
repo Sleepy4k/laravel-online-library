@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('histories.index') }}" class='menu-link'>
+                    <a href="{{ route('history') }}" class='menu-link'>
                         <span>
                             <i class="bi bi-grid-fill"></i>
                             History

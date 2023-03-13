@@ -2,7 +2,7 @@
     <div class="col-12 col-xl-4">
         <div class="card">
             <div class="card-header">
-                <h4>Kategori Buku ({{ count($categories) }})</h4>
+                <h4>Kategori Buku ({{ $categories->total() }})</h4>
             </div>
             <div class="card-body">
                 @foreach ($categories as $category)
@@ -13,7 +13,7 @@
                                     style="width:10px">
                                     <use xlink:href="user/images/bootstrap-icons.svg#circle-fill" />
                                 </svg>
-                                <h5 class="mb-0 ms-3">{{ $category->name }}</h5>
+                                <h5 class="mb-0 ms-3">{{ Str::limit($category->name, 15, '...') }}</h5>
                             </div>
                         </div>
                         <div class="col-2">
@@ -22,10 +22,10 @@
                     </div>
                 @endforeach
                 <br>
-                {{-- {{ $categories->links() }} --}}
+                {{ $categories->links() }}
             </div>
         </div>
     </div>
 
-    @includeIf('partials.body.main.chart')
+    @includeIf('partials.body.user.main.chart')
 </div>

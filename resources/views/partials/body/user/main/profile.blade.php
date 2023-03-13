@@ -8,7 +8,7 @@
             <div class="ms-3 name">
                 @auth
                     <h6 class="font-bold">{{ request()->user()->name }}</h6>
-                    <h6 class="text-muted mb-0">@ {{ request()->user()->username }}</h6>
+                    <h6 class="text-muted mb-0">@ {{ ucfirst(request()->user()->getRoleNames()[0]) }}</h6>
                 @else
                     <h6 class="font-bold">Pengguna</h6>
                     <h6 class="text-muted mb-0">@ Guest</h6>
