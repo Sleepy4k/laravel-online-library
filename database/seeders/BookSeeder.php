@@ -13,7 +13,7 @@ class BookSeeder extends Seeder
     public function run(): void
     {
         if (Book::count() == 0) {
-            $books = Book::factory(10)->make();
+            $books = Book::factory(25)->make();
 
             Book::insert($books->toArray());
         }

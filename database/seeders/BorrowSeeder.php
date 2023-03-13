@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Application;
+use App\Models\Borrow;
 use Illuminate\Database\Seeder;
 
-class ApplicationSeeder extends Seeder
+class BorrowSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,10 @@ class ApplicationSeeder extends Seeder
      */
     public function run()
     {
-        if (Application::count() == 0) {
-            Application::factory()->create();
+        if (Borrow::count() == 0) {
+            $borrows = Borrow::factory(25)->make();
+
+            Borrow::insert($borrows->toArray());
         }
     }
 }

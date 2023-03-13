@@ -13,7 +13,7 @@ class AuthorSeeder extends Seeder
     public function run(): void
     {
         if (Author::count() == 0) {
-            $authors = Author::factory(10)->make();
+            $authors = Author::factory(25)->make();
 
             Author::insert($authors->toArray());
         }
