@@ -2,7 +2,7 @@
     <div class="col-12 col-xl-4">
         <div class="card">
             <div class="card-header">
-                <h4>Kategori Buku ({{ $categories->total() }})</h4>
+                <h4>Kategori Buku ({{ count($categories) }})</h4>
             </div>
             <div class="card-body">
                 @foreach ($categories as $category)
@@ -22,7 +22,7 @@
                     </div>
                 @endforeach
                 <br>
-                {{ $categories->links() }}
+                {{-- {{ $categories->links() }} --}}
             </div>
         </div>
     </div>
