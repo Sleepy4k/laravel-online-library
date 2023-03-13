@@ -57,10 +57,10 @@ class Handler extends ExceptionHandler
                 ], 403);
             }
 
-            if (auth()->check() && auth()->user()->getRoleNames()[0] != 'user') {
+            if (auth()->check() && request()->user()->getRoleNames()[0] != 'user') {
                 return to_route('dashboard.index');
             } else {
-                return to_route('landing.index');
+                return to_route('landing');
             }
         });
     }
