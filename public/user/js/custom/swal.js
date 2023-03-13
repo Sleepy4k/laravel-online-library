@@ -1,75 +1,101 @@
 // Success
-$(document).ready(function() {
-    $(document).on('click', '.success', function (e) {
+$(document).ready(function () {
+    $(document).on("click", ".success", function (e) {
         e.preventDefault();
         swal({
-            title: 'Berhasil',
+            title: "Berhasil",
             text: "Aksi berhasil dilakukan",
-            icon: 'success',
-        })
+            icon: "success",
+        });
     });
 });
 
 // Information
-$(document).ready(function() {
-    $(document).on('click', '.information', function (e) {
+$(document).ready(function () {
+    $(document).on("click", ".information", function (e) {
         e.preventDefault();
         swal({
-            title: 'Information',
+            title: "Information",
             text: "Aksi berhasil dilakukan",
-            icon: 'info',
-        })
+            icon: "info",
+        });
     });
 });
 
 // Confirm Delete
-$(document).ready(function() {
-    $(document).on('click', '.confirm-delete', function (e) {
+$(document).ready(function () {
+    $(document).on("click", ".confirm-delete", function (e) {
         e.preventDefault();
-        const form = $(this).parents('form');
+        const form = $(this).parents("form");
         swal({
-            title: 'Apakah Kamu Yakin?',
+            title: "Apakah Kamu Yakin?",
             text: "Kamu akan menghapus data ini secara permanen!",
-            icon: 'warning',
+            icon: "warning",
             buttons: ["Cancel", "Yakin"],
         }).then((result) => {
             if (result) {
                 swal({
-                    title: 'Berhasil',
+                    title: "Berhasil",
                     text: "Data berhasil terhapus",
-                    icon: 'success',
+                    icon: "success",
                 }).then((result) => {
                     if (result) {
                         form.submit();
                     }
-                })
+                });
             }
-        })
+        });
     });
 });
 
 // Confirm Edit
-$(document).ready(function() {
-    $(document).on('click', '.confirm-edit', function (e) {
+$(document).ready(function () {
+    $(document).on("click", ".confirm-edit", function (e) {
         e.preventDefault();
-        const form = $(this).parents('form');
+        const form = $(this).parents("form");
         swal({
-            title: 'Apakah Kamu Yakin?',
+            title: "Apakah Kamu Yakin?",
             text: "Kamu akan mengubah data ini secara permanen!",
-            icon: 'info',
+            icon: "info",
             buttons: ["Cancel", "Yakin"],
         }).then((result) => {
             if (result) {
                 swal({
-                    title: 'Berhasil',
+                    title: "Berhasil",
                     text: "Data berhasil terhapus",
-                    icon: 'success',
+                    icon: "success",
                 }).then((result) => {
                     if (result) {
                         form.submit();
                     }
-                })
+                });
             }
-        })
+        });
+    });
+});
+
+// Confirm Save
+$(document).ready(function () {
+    $(document).on("click", ".confirm-save", function (e) {
+        e.preventDefault();
+        const form = $(this).parents("form");
+        swal({
+            title: "Apakah Kamu Yakin?",
+            text: "Kamu akan menyimpan data ini!",
+            icon: "info",
+            buttons: ["Cancel", "Yakin"],
+        }).then((result) => {
+            if (result) {
+                swal({
+                    title: "Berhasil",
+                    text: "Data berhasil tersimpan",
+                    icon: "success",
+                }).then((result) => {
+                    if (result) {
+                        form.submit();
+                    }
+                });
+            }
+        });
     });
 });
