@@ -147,7 +147,7 @@ class EloquentRepository implements EloquentInterface
     public function findByCustomId(array $wheres = [], array $columns = ['*'], array $relations = [], array $appends = []): ?Model
     {
         try {
-            return $this->model->select($columns)->with($relations)->where($wheres)->firstOrFail();
+            return $this->model->select($columns)->with($relations)->where($wheres)->first();
         } catch (\Throwable $th) {
             $this->sendReportLog('error', $th->getMessage());
 
