@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('grade');
+            $table->string('grade');
             $table->string('major');
             $table->bigInteger('class');
             $table->timestamps();
