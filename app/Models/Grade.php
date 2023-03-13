@@ -112,7 +112,7 @@ class Grade extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'grade' => 'integer',
+        'grade' => 'string',
         'major' => 'string',
         'class' => 'integer',
         'created_at' => 'datetime:Y-m-d',
