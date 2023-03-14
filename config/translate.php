@@ -142,47 +142,95 @@ return [
             'group' => 'error',
             'key' => 'back_home',
             'text' => [
-                'id' => 'Back to home',
-                'en' => 'Kembali ke halaman'
+                'id' => 'Kembali ke halaman',
+                'en' => 'Back to home'
             ]
         ],
         [
             'group' => 'error',
             'key' => '401.title',
             'text' => [
-                'id' => 'Unauthorized Request',
-                'en' => 'Permintaan Tidak Sah'
+                'id' => 'Permintaan Tidak Sah',
+                'en' => 'Unauthorized Request'
             ]
         ],
         [
             'group' => 'error',
             'key' => '401.description',
             'text' => [
-                'id' => 'Unauthorized Access due invalid credential or access',
-                'en' => 'Akses Tidak Sah karena kredensial atau akses tidak valid'
+                'id' => 'Akses Tidak Sah karena kredensial atau akses tidak valid',
+                'en' => 'Unauthorized Access due invalid credential or access'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '403.title',
+            'text' => [
+                'id' => 'Akses Dilarang',
+                'en' => 'Forbidden Access'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '403.description',
+            'text' => [
+                'id' => 'Akses Dilarang karena kredensial atau akses tidak valid',
+                'en' => 'Forbidden Access due invalid credential or access'
             ]
         ],
         [
             'group' => 'error',
             'key' => '404.title',
             'text' => [
-                'id' => 'Page not found',
-                'en' => 'halaman tidak ditemukan'
+                'id' => 'halaman tidak ditemukan',
+                'en' => 'Page not found'
             ]
         ],
         [
             'group' => 'error',
             'key' => '404.description',
             'text' => [
-                'id' => 'We are sorry, but the page you requested was not found',
-                'en' => 'Maaf, tetapi halaman yang Anda minta tidak ditemukan'
+                'id' => 'Maaf, tetapi halaman yang Anda minta tidak ditemukan',
+                'en' => 'We are sorry, but the page you requested was not found'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '419.title',
+            'text' => [
+                'id' => 'Sesi Berakhir',
+                'en' => 'Session Expired'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '419.description',
+            'text' => [
+                'id' => 'Sesi Anda telah berakhir. Silahkan refresh dan coba lagi',
+                'en' => 'Your session has expired. Please refresh and try again'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '429.title',
+            'text' => [
+                'id' => 'Terlalu Banyak Permintaan',
+                'en' => 'Too Many Requests'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '429.description',
+            'text' => [
+                'id' => 'Terlalu Banyak Permintaan. Silahkan coba lagi nanti',
+                'en' => 'Too Many Requests. Please try again later'
             ]
         ],
         [
             'group' => 'error',
             'key' => '500.title',
             'text' => [
-                'id' => 'Server Error',
+                'id' => 'Kesalahan Server',
                 'en' => 'Server Error'
             ]
         ],
@@ -192,6 +240,22 @@ return [
             'text' => [
                 'id' => 'Server mengalami kesalahan internal atau kesalahan konfigurasi dan tidak dapat menyelesaikan permintaan Anda',
                 'en' => 'The server encountered an internal error or misconfiguration and was unable to complete your request'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '503.title',
+            'text' => [
+                'id' => 'Service Tidak Tersedia',
+                'en' => 'Service Unavailable'
+            ]
+        ],
+        [
+            'group' => 'error',
+            'key' => '503.description',
+            'text' => [
+                'id' => 'Service tidak tersedia untuk sementara waktu. Silahkan coba lagi nanti',
+                'en' => 'Service is temporarily unavailable. Please try again later'
             ]
         ],
         [

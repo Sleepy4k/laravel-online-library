@@ -1,5 +1,13 @@
-@extends('errors::minimal')
+@extends('layouts.error')
 
-@section('title', __('Too Many Requests'))
-@section('code', '429')
-@section('message', __('Too Many Requests'))
+@section('title')
+    @lang('error.429.title')
+@endsection
+
+@section('message')
+    @lang('error.429.description')
+@endsection
+
+@section('image')
+    <img class="img-error" src="{{ asset('user/images/samples/error-500.svg') }}" alt="Not Found">
+@endsection
