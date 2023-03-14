@@ -21,7 +21,7 @@ class BookDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                if (auth()->check()) {
+                if (auth()->check() && request()->user()->hasRole('user')) {
                     foreach ($query->borrow as $borrow) {
                         if ($borrow->user_id == auth()->user()->id && $borrow->status == 'borrowed') {
                             return '<a href="' . route("books.show", $query->id) . '"><i class="fa-solid fa-eye"></i></a>';
