@@ -1,5 +1,13 @@
-@extends('errors::minimal')
+@extends('layouts.error')
 
-@section('title', __('Page Expired'))
-@section('code', '419')
-@section('message', __('Page Expired'))
+@section('title')
+    @lang('error.419.title')
+@endsection
+
+@section('message')
+    @lang('error.419.description')
+@endsection
+
+@section('image')
+    <img class="img-error" src="{{ asset('user/images/samples/error-403.svg') }}" alt="Not Found">
+@endsection

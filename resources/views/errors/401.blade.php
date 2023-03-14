@@ -1,5 +1,13 @@
-@extends('errors::minimal')
+@extends('layouts.error')
 
-@section('title', __('Unauthorized'))
-@section('code', '401')
-@section('message', __('Unauthorized'))
+@section('title')
+    @lang('error.404.title')
+@endsection
+
+@section('message')
+    @lang('error.404.description')
+@endsection
+
+@section('image')
+    <img class="img-error" src="{{ asset('user/images/samples/error-403.svg') }}" alt="Not Found">
+@endsection

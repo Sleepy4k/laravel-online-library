@@ -1,5 +1,13 @@
-@extends('errors::minimal')
+@extends('layouts.error')
 
-@section('title', __('Server Error'))
-@section('code', '500')
-@section('message', __('Server Error'))
+@section('title')
+    @lang('error.500.title')
+@endsection
+
+@section('message')
+    @lang('error.500.description')
+@endsection
+
+@section('image')
+    <img class="img-error" src="{{ asset('user/images/samples/error-500.svg') }}" alt="Not Found">
+@endsection
