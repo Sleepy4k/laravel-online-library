@@ -30,11 +30,11 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'age' => fake()->numberBetween(18, 60),
             'email' => fake()->unique()->safeEmail(),
-            'phone' => fake()->phoneNumber(),
+            'phone' => '08' . fake()->numberBetween(100000000, 999999999),
             'address' => fake()->address(),
             'gender' => fake()->randomElement($genders),
             'grade_id' => fake()->numberBetween(1, 5),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => 'password', // password
         ];
     }
 }

@@ -17,7 +17,7 @@ class BorrowFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => fake()->numberBetween(1, 10),
+            'user_id' => fake()->numberBetween(1, 25),
             'book_id' => fake()->numberBetween(1, 25),
             'status' => fake()->randomElement(['borrowed', 'returned']),
         ];
