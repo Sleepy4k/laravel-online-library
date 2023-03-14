@@ -29,7 +29,7 @@
 
                         @auth
                             @if (auth()->user()->hasRole('admin'))
-                                <a href="{{ route('dashboard.index') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
+                                <a href="{{ route('admin.dashboard.index') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
                             @else
                                 <a href="{{ route('landing') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
                             @endif

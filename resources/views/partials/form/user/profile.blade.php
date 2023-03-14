@@ -47,6 +47,7 @@
             </div>
 
             <div class="mb-4">
+                <a href="{{ route('profile.index') }}" class="btn btn-success me-3">Kembali</a>
                 <button class="btn btn-primary" type="submit">Submit Profile</button>
             </div>
         </form>
