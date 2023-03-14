@@ -13,7 +13,7 @@
                     <div id="auth-left">
                         <div class="auth-logo">
                             <a href="{{ route('landing') }}">
-                                <img src="{{ asset('user/images/logo/logo.svg') }}" alt="Logo">
+                                <img src="{{ asset('images/logo/logo.svg') }}" alt="Logo">
                             </a>
                         </div>
                         <h1 class="auth-title">

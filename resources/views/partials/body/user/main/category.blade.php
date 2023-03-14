@@ -11,7 +11,7 @@
                             <div class="d-flex align-items-center">
                                 <svg class="bi text-primary" width="32" height="32" fill="blue"
                                     style="width:10px">
-                                    <use xlink:href="user/images/bootstrap-icons.svg#circle-fill" />
+                                    <use xlink:href="images/bootstrap-icons.svg#circle-fill" />
                                 </svg>
                                 <h5 class="mb-0 ms-3">{{ Str::limit($category->name, 15, '...') }}</h5>
                             </div>
