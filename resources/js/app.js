@@ -8,4 +8,5 @@ import "../css/fontawesome.css";
 import "./mazerapp";
 import "./swal";
 import "./horizontal-layout";
+import "./form-select";
 import "./bootstrap";
