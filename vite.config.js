@@ -10,6 +10,7 @@ export default defineConfig({
                 "resources/js/mazer.js",
                 "resources/js/swal.js",
                 "resources/js/horizontal-layout.js",
+                "resources/js/form-select.js",
                 "resources/css/app.css",
                 "resources/css/app-dark.css",
                 "resources/css/auth.css",
