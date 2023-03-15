@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('profile', 'User\ProfileController')->only('index', 'create', 'store');
 
     Route::middleware('role:admin')->as('admin.')->group(function () {
-        Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard.index');
+        Route::get('dashboard', 'Admin\DashboardController')->name('dashboard');
 
         Route::prefix('main')->group(function () {
             Route::resources([
@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
             ]);
         });
 
-        Route::prefix('system')->group(function () {
+        Route::prefix('audit')->group(function () {
             Route::resources([
                 'auth' => 'Admin\AuthController',
                 'model' => 'Admin\ModelController',
