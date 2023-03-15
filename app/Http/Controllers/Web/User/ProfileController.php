@@ -40,7 +40,7 @@ class ProfileController extends WebController
     public function create()
     {
         try {
-            return view('partials.form.user.profile', $this->service->create());
+            return view('partials.form.user.profile.edit', $this->service->create());
         } catch (\Throwable $th) {
             return $this->redirectError($th);
         }

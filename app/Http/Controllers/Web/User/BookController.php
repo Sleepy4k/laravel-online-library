@@ -56,7 +56,7 @@ class BookController extends WebController
     public function show(string $id)
     {
         try {
-            return view('partials.form.user.book', $this->service->show($id));
+            return view('partials.form.user.book.show', $this->service->show($id));
         } catch (\Throwable $th) {
             return $this->redirectError($th);
         }
