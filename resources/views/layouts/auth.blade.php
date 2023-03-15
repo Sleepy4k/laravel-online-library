@@ -4,7 +4,7 @@
         @includeIf('partials.head.meta')
         @includeIf('partials.head.title')
         @includeIf('partials.head.icon')
-        @vite(['resources/css/auth.css', 'resources/js/app.js'])
+        @vite(['resources/css/auth.css', 'resources/js/app.js', 'resources/js/form-select.js'])
         @stack('addon-css')
     </head>
     <body>
