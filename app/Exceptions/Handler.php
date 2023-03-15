@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
             }
 
             if (auth()->check() && request()->user()->hasRole('admin')) {
-                return to_route('admin.dashboard.index');
+                return to_route('admin.dashboard');
             } else {
                 return to_route('landing');
             }
