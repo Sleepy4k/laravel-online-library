@@ -4,7 +4,8 @@
         @includeIf('partials.head.meta')
         @includeIf('partials.head.title')
         @includeIf('partials.head.icon')
-        @includeIf('partials.head.auth.css')
+        @vite(['resources/css/auth.css', 'resources/js/app.js'])
+        @stack('addon-css')
     </head>
     <body>
         <div id="auth">
@@ -37,5 +38,7 @@
                 </div>
             </div>
         </div>
+
+        @stack('addon-script')
     </body>
 </html>

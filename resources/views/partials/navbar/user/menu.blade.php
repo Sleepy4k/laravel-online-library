@@ -20,10 +20,10 @@
             @auth
                 @role('admin')
                     <li class="menu-item">
-                        <a href="{{ route('admin.dashboard.index') }}" class='menu-link'>
+                        <a href="{{ route('admin.dashboard') }}" class='menu-link'>
                             <span>
                                 <i class="bi bi-grid-fill"></i>
-                                Dashboard
+                                Admin
                             </span>
                         </a>
                     </li>

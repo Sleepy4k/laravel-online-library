@@ -52,8 +52,10 @@
     </div>
 
     <div class="form-group position-relative has-icon-left mb-4">
-        <label for="address">Address</label>
-        <textarea name="address" id="address" cols="57" rows="5" placeholder="Your Home Address">{{ old('address') }}</textarea>
+        <textarea name="address" id="address" class="form-control" placeholder="Your Home Address">{{ old('address') }}</textarea>
+        <div class="form-control-icon">
+            <i class="bi bi-house"></i>
+        </div>
     </div>
 
     <div class="form-group position-relative has-icon-left mb-4">

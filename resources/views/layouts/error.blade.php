@@ -4,7 +4,8 @@
         @includeIf('partials.head.meta')
         @includeIf('partials.head.title')
         @includeIf('partials.head.icon')
-        @includeIf('partials.head.error.css')
+        @vite(['resources/css/error.css', 'resources/js/app.js'])
+        @stack('addon-css')
     </head>
     <body>
         <div id="error">
@@ -28,8 +29,8 @@
                         </p>
 
                         @auth
-                            @if (auth()->user()->hasRole('admin'))
-                                <a href="{{ route('admin.dashboard.index') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
+                            @if (auth()->user()->getRoleNames()[0] == 'admin')
+                                <a href="{{ route('admin.dashboard') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
                             @else
                                 <a href="{{ route('landing') }}" class="btn btn-lg btn-outline-primary mt-3">@lang('error.back_home')</a>
                             @endif
@@ -40,5 +41,7 @@
                 </div>
             </div>
         </div>
+
+        @stack('addon-script')
     </body>
 </html>
