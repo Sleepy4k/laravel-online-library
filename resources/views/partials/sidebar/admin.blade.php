@@ -75,31 +75,31 @@
                 <li class="sidebar-item">
                     <a href="{{ route('admin.histories') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Loans History</span>
+                        <span>Loans Histories</span>
                     </a>
                 </li>
 
                 <li class="sidebar-title">Admin</li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.users.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Users</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Roles</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.permissions.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Permissions</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.application.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Application</span>
                     </a>
@@ -107,25 +107,25 @@
 
                 <li class="sidebar-title">Audit</li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.auth') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Authentication</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.model') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Model</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.query.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Query</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.system.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>System</span>
                     </a>

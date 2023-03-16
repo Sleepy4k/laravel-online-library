@@ -13,13 +13,13 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
 <meta property="og:url" content="{{ config('app.url') }}">
-<meta property="og:image" content="{{ isset($meta->app_icon) ? asset('storage/image/'.$meta->app_icon) : asset('assets/images/logo/favicon.png') }}">
+<meta property="og:image" content="{{ isset($meta->app_icon) ? $meta->app_icon : asset('assets/images/logo/favicon.png') }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ isset($meta->app_name) ? $meta->app_name : config('app.name') }}">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ basename(request()->path()) ? ucfirst(basename(request()->path())) . ' |' : '' }} {{ (isset($meta->app_name) ? $meta->app_name : config('app.name')) }}">
-<meta name="twitter:image" content="{{ isset($meta->app_icon) ? asset('storage/image/'.$meta->app_icon) : asset('assets/images/logo/favicon.png') }}">
+<meta name="twitter:image" content="{{ isset($meta->app_icon) ? $meta->app_icon : asset('assets/images/logo/favicon.png') }}">
 
 @stack('addon-meta')
