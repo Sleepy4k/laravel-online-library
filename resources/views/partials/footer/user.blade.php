@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer clearfix mb-0 text-muted">
             <div class="float-start">
-                <p>{{ date('Y') }} &copy; Benjamin4k</p>
+                <p>@lang('footer.copyright', ['year' => date('Y'), 'name' => isset($meta->meta_author) ? $meta->meta_author : config('app.name')])</p>
             </div>
             <div class="float-end">
                 <p>

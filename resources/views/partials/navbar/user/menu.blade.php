@@ -18,28 +18,29 @@
                 </a>
             </li>
             @auth
-                <li class="menu-item">
-                    <a href="{{ route('loans.index') }}" class='menu-link'>
-                        <span>
-                            <i class="bi bi-grid-fill"></i>
-                            Peminjaman
-                        </span>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('history') }}" class='menu-link'>
-                        <span>
-                            <i class="bi bi-grid-fill"></i>
-                            History
-                        </span>
-                    </a>
-                </li>
                 @role('admin')
                     <li class="menu-item">
-                        <a href="{{ route('dashboard.index') }}" class='menu-link'>
+                        <a href="{{ route('admin.dashboard') }}" class='menu-link'>
                             <span>
                                 <i class="bi bi-grid-fill"></i>
-                                Dashboard
+                                Admin
+                            </span>
+                        </a>
+                    </li>
+                @else
+                    <li class="menu-item">
+                        <a href="{{ route('loans.index') }}" class='menu-link'>
+                            <span>
+                                <i class="bi bi-grid-fill"></i>
+                                Peminjaman
+                            </span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('history') }}" class='menu-link'>
+                            <span>
+                                <i class="bi bi-grid-fill"></i>
+                                History
                             </span>
                         </a>
                     </li>

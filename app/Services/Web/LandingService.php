@@ -13,7 +13,7 @@ class LandingService extends WebService
     {
         return [
             'books' => $this->bookInterface->all(['*'], ['author', 'publisher', 'category']),
-            'users' => $this->userInterface->all(['id'])->count(),
+            'users' => $this->userInterface->all(['id'], [], [], 'created_at', true, ['user'])->count(),
             'authors' => $this->authorInterface->all(['id'])->count(),
             'publisher' => $this->publisherInterface->all(['id'])->count(),
             'categories' => $this->bookCategoryInterface->paginate(10, ['*'], ['books']),

@@ -17,5 +17,5 @@
 @endsection
 
 @section('image')
-    <img class="img-error" src="{{ asset('user/images/samples/error-403.svg') }}" alt="Not Found">
+    <img class="img-error" src="{{ asset('images/samples/error-403.svg') }}" alt="Not Found">
 @endsection

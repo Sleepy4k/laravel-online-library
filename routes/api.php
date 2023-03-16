@@ -59,15 +59,24 @@ Route::middleware('auth:sanctum')->group(function () {
         'authors' => 'Main\AuthorController',
         'publishers' => 'Main\PublisherController',
         'categories' => 'Main\BookCategoryController',
-    ]);
+    ], ['only' => ['index', 'show']]);
 
-    Route::prefix('audit')->group(function () {
+    Route::middleware('role:admin')->group(function () {
         Route::apiResources([
-            'auth' => 'Audit\AuthController',
-            'model' => 'Audit\ModelController',
-            'query' => 'Audit\QueryController',
-            'system' => 'Audit\SystemController'
-        ], ['only' => ['index', 'show']]);
+            'books' => 'Main\BookController',
+            'authors' => 'Main\AuthorController',
+            'publishers' => 'Main\PublisherController',
+            'categories' => 'Main\BookCategoryController',
+        ], ['except' => ['index', 'show']]);
+
+        Route::prefix('audit')->group(function () {
+            Route::apiResources([
+                'auth' => 'Audit\AuthController',
+                'model' => 'Audit\ModelController',
+                'query' => 'Audit\QueryController',
+                'system' => 'Audit\SystemController'
+            ], ['only' => ['index', 'show']]);
+        });
     });
 });
 

@@ -198,13 +198,14 @@ return [
         /*
          * Custom Service Providers...
          */
+        App\Providers\ViewServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
 
         // Yajra DataTables
-        Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\HtmlServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         // Toast
         Yoeunes\Toastr\ToastrServiceProvider::class,

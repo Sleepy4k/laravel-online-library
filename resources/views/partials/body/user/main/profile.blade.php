@@ -3,7 +3,7 @@
         <h6>Selamat Datang !</h6>
         <div class="d-flex align-items-center">
             <div class="avatar avatar-xl">
-                <img src="user/images/faces/1.jpg" alt="Face 1">
+                <img src="images/faces/1.jpg" alt="Face 1">
             </div>
             <div class="ms-3 name">
                 @auth

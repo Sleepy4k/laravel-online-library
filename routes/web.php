@@ -55,13 +55,16 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', 'Auth\LogoutController')->name('logout');
-    Route::get('histories', 'User\HistoryController')->name('history');
-    Route::post('borrow/{id}', 'User\BorrowController')->name('borrow');
-    Route::resource('loans', 'User\LoanController')->only('index', 'destroy');
     Route::resource('profile', 'User\ProfileController')->only('index', 'create', 'store');
 
+    Route::middleware('role:user')->group(function () {
+        Route::get('histories', 'User\HistoryController')->name('history');
+        Route::post('borrow/{id}', 'User\BorrowController')->name('borrow');
+        Route::resource('loans', 'User\LoanController')->only('index', 'destroy');
+    });
+
     Route::middleware('role:admin')->as('admin.')->group(function () {
-        Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard.index');
+        Route::get('dashboard', 'Admin\DashboardController')->name('dashboard');
 
         Route::prefix('main')->group(function () {
             Route::resources([
@@ -69,9 +72,10 @@ Route::middleware('auth')->group(function () {
                 'authors' => 'Admin\AuthorController',
                 'categories' => 'Admin\CategoryController',
                 'publishers' => 'Admin\PublisherController',
-                'borrow' => 'Admin\BorrowController',
-                'history' => 'Admin\HistoryController',
             ]);
+
+            Route::get('loans', 'Admin\BorrowController')->name('loans');
+            Route::get('histories', 'Admin\HistoryController')->name('histories');
         });
 
         Route::prefix('admin')->group(function () {
@@ -81,15 +85,18 @@ Route::middleware('auth')->group(function () {
                 'permissions' => 'Admin\PermissionController',
                 'application' => 'Admin\ApplicationController',
             ]);
+
+            Route::resource('application', 'Admin\ApplicationController')->only('index', 'create', 'store');
         });
 
-        Route::prefix('system')->group(function () {
+        Route::prefix('audit')->group(function () {
             Route::resources([
-                'auth' => 'Admin\AuthController',
-                'model' => 'Admin\ModelController',
                 'query' => 'Admin\QueryController',
                 'system' => 'Admin\SystemController',
             ], ['only' => ['index', 'show']]);
+
+            Route::get('auth', 'Admin\AuthController')->name('auth');
+            Route::get('model', 'Admin\ModelController')->name('model');
         });
     });
 });

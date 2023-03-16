@@ -4,7 +4,8 @@
         @includeIf('partials.head.meta')
         @includeIf('partials.head.title')
         @includeIf('partials.head.icon')
-        @includeIf('partials.head.auth.css')
+        @vite(['resources/css/auth.css', 'resources/js/app.js', 'resources/js/form-select.js'])
+        @stack('addon-css')
     </head>
     <body>
         <div id="auth">
@@ -13,7 +14,7 @@
                     <div id="auth-left">
                         <div class="auth-logo">
                             <a href="{{ route('landing') }}">
-                                <img src="{{ asset('user/images/logo/logo.svg') }}" alt="Logo">
+                                <img src="{{ asset('images/logo/logo.svg') }}" alt="Logo">
                             </a>
                         </div>
                         <h1 class="auth-title">
@@ -37,5 +38,7 @@
                 </div>
             </div>
         </div>
+
+        @stack('addon-script')
     </body>
 </html>
