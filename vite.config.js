@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/js/bootstrap.js",
                 "resources/js/mazer.js",
                 "resources/js/swal.js",
+                "resources/js/image.js",
                 "resources/js/horizontal-layout.js",
                 "resources/js/form-select.js",
                 "resources/css/app.css",
