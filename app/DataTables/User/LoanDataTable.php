@@ -40,7 +40,7 @@ class LoanDataTable extends DataTable
      */
     public function query(Borrow $model): QueryBuilder
     {
-        return $model->where('status', 'borrowed')->newQuery();
+        return $model->where([['status', 'borrowed'], ['user_id', auth()->user()->id]])->newQuery();
     }
 
     /**

@@ -89,24 +89,24 @@ class BookDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('image')
-                ->title('cover')
+                ->title('Cover')
                 ->addClass('text-center'),
             Column::make('title')
-                ->title('title')
+                ->title('Title')
                 ->addClass('text-center'),
             Column::make('description')
                 ->hidden(),
             Column::make('year')
-                ->title('year')
+                ->title('Year')
                 ->addClass('text-center'),
             Column::make('author_id')
-                ->title('author')
+                ->title('Author')
                 ->addClass('text-center'),
             Column::make('publisher_id')
-                ->title('publisher')
+                ->title('Publisher')
                 ->addClass('text-center'),
             Column::make('category_id')
-                ->title('category')
+                ->title('Category')
                 ->addClass('text-center'),
             Column::computed('action')
                 ->title('Action')
