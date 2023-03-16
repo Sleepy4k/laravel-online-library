@@ -21,8 +21,8 @@ class BookService extends WebService
     {
         return [
             'authors' => $this->authorInterface->all(['id', 'name']),
-            'categories' => $this->bookCategoryInterface->all(['id', 'name']),
             'publishers' => $this->publisherInterface->all(['id', 'name']),
+            'categories' => $this->bookCategoryInterface->all(['id', 'name']),
         ];
     }
 
@@ -31,7 +31,17 @@ class BookService extends WebService
      */
     public function store(array $request)
     {
-        return [];
+        try {
+            $this->bookInterface->create($request);
+        } catch (\Throwable $th) {
+            toastr()->error('Failed to create book. Please try again later.', 'Error');
+
+            return false;
+        }
+
+        toastr()->success('Book created successfully.', 'Success');
+
+        return true;
     }
 
     /**
@@ -39,7 +49,9 @@ class BookService extends WebService
      */
     public function show(string $id)
     {
-        return [];
+        return [
+            'book' => $this->bookInterface->findById($id, ['*'], ['author', 'publisher', 'category']),
+        ];
     }
 
     /**
@@ -47,7 +59,12 @@ class BookService extends WebService
      */
     public function edit(string $id)
     {
-        return [];
+        return [
+            'authors' => $this->authorInterface->all(['id', 'name']),
+            'publishers' => $this->publisherInterface->all(['id', 'name']),
+            'categories' => $this->bookCategoryInterface->all(['id', 'name']),
+            'book' => $this->bookInterface->findById($id, ['*'], ['author', 'publisher', 'category']),
+        ];
     }
 
     /**
@@ -55,7 +72,17 @@ class BookService extends WebService
      */
     public function update(array $request, string $id)
     {
-        return [];
+        try {
+            $this->bookInterface->update($id, $request);
+        } catch (\Throwable $th) {
+            toastr()->error('Failed to update book. Please try again later.', 'Error');
+
+            return false;
+        }
+
+        toastr()->success('Book updated successfully.', 'Success');
+
+        return true;
     }
 
     /**
@@ -63,6 +90,16 @@ class BookService extends WebService
      */
     public function destroy(string $id)
     {
-        return [];
+        try {
+            $this->bookInterface->deleteById($id);
+        } catch (\Throwable $th) {
+            toastr()->error('Failed to delete book. Please try again later.', 'Error');
+
+            return false;
+        }
+
+        toastr()->success('Book deleted successfully.', 'Success');
+
+        return true;
     }
 }
