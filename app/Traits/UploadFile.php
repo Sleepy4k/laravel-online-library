@@ -10,51 +10,36 @@ trait UploadFile
 
     /**
      * Set path root when upload file.
-     *
-     * @var string
      */
     protected $baseDisk = 'public';
 
     /**
-     * Set path root when upload file.
-     *
-     * @var string
+     * Set path root when unkown file.
      */
     protected $unkownPath = 'unkown';
 
     /**
      * Set path image folder when upload image.
-     *
-     * @var string
      */
     protected $imagePath = 'image';
 
     /**
      * Set path excel folder when upload image.
-     *
-     * @var string
      */
     protected $excelPath = 'excel';
 
     /**
      * Set path pdf folder when upload image.
-     *
-     * @var string
      */
     protected $pdfPath = 'pdf';
 
     /**
      * Set path word folder when upload image.
-     *
-     * @var string
      */
     protected $qrcodePath = 'qrcode';
 
     /**
      * Set path for storage when upload file.
-     *
-     * @param string $type
-     * @return void
      */
     protected function storageDisk($type)
     {
@@ -78,24 +63,60 @@ trait UploadFile
     }
 
     /**
+     * Transform name file
+     */
+    protected function transformName($file)
+    {
+        try {
+            $name = request()->getSchemeAndHttpHost() . '/storage/image/' . $file;
+
+            return $name;
+        } catch (\Throwable $th) {
+            $this->sendReportLog('error', $th->getMessage());
+
+            return null;
+        }
+    }
+
+    /**
+     * Parse image name
+     */
+    protected function parseImage($file)
+    {
+        try {
+            $parse = parse_url($file);
+            $name = explode('/', $parse['path'])[3];
+
+            return $name;
+        } catch (\Throwable $th) {
+            $this->sendReportLog('error', $th->getMessage());
+
+            return null;
+        }
+    }
+
+    /**
      * Save file in storage app
-     *
-     * @param string $type
-     * @param mixed $file
-     * @return void
      */
     protected function putFile($type, $file)
     {
         try {
-            $user = request()->user();
-            $clientCode = $user->id . '_' . $user->created_at->format('dmY');
+            if (auth()->check()) {
+                $user = auth()->user();
+                $clientCode = $user->id . '_' . $user->created_at->format('dmY');
+            } else {
+                $clientCode = rand(1, 999) . '_' . date('His');
+            }
+
             $fileName = preg_replace('/\s+/', '_', uniqid() . '_' . date('dmY') . '_' . $clientCode . '.' . $file->getClientOriginalExtension());
 
-            if ($this->checkFile($type, $fileName)) {
+            if ($this->checkFile($type, $fileName, true)) {
                 return $this->putFile($type, $file);
             }
 
             $file->storeAs($this->storageDisk($type), $fileName);
+
+            $fileName = $this->transformName($fileName);
 
             return $fileName;
         } catch (\Throwable $th) {
@@ -107,16 +128,14 @@ trait UploadFile
 
     /**
      * Delete file in storage app
-     *
-     * @param string $type
-     * @param mixed $file
-     * @return void
      */
     protected function deleteFile($type, $file)
     {
         try {
             if ($this->checkFile($type, $file)) {
-                Storage::delete($this->storageDisk($type) . $file);
+                $parsedFile = $this->parseImage($file);
+
+                Storage::delete($this->storageDisk($type) . $parsedFile);
 
                 return true;
             }
@@ -131,15 +150,17 @@ trait UploadFile
 
     /**
      * Check file in storage app
-     *
-     * @param string $type
-     * @param mixed $file
-     * @return void
      */
-    protected function checkFile($type, $file)
+    protected function checkFile($type, $file, $save = false)
     {
         try {
-            if (Storage::exists($this->storageDisk($type) . $file)) {
+            if ($save) {
+                $parsedFile = $file;
+            } else {
+                $parsedFile = $this->parseImage($file);
+            }
+
+            if (Storage::exists($this->storageDisk($type) . $parsedFile)) {
                 return true;
             }
 
@@ -153,10 +174,6 @@ trait UploadFile
 
     /**
      * Save single file to storage app
-     *
-     * @param string $type
-     * @param mixed $file
-     * @return void
      */
     protected function saveSingleFile($type, $file)
     {
@@ -175,11 +192,6 @@ trait UploadFile
 
     /**
      * Update old file with the new one
-     *
-     * @param string $type
-     * @param mixed $file
-     * @param mixed $old_file
-     * @return void
      */
     protected function updateSingleFile($type, $file, $old_file)
     {
@@ -199,77 +211,6 @@ trait UploadFile
             $this->sendReportLog('error', $th->getMessage());
 
             return null;
-        }
-    }
-
-    /**
-     * Save multiple file at once
-     *
-     * @param string $type
-     * @param mixed $file
-     * @return void
-     */
-    protected function saveMultipleFile($type, $files)
-    {
-        $data = [];
-
-        try {
-            if (is_null($files)) {
-                return $data;
-            }
-
-            if (!is_array($files)) {
-                return $this->putFile($type, $files);
-            }
-
-            foreach ($files as $file) {
-                $data[] = $this->putFile($type, $file);
-            }
-
-            return $data;
-        } catch (\Throwable $th) {
-            $this->sendReportLog('error', $th->getMessage());
-
-            return $data;
-        }
-    }
-
-    /**
-     * Update multiple file at once
-     *
-     * @param string $type
-     * @param mixed $file
-     * @param mixed $old_file
-     * @return void
-     */
-    protected function updateMultipleFile($type, $files, $old_file)
-    {
-        $data = [];
-
-        try {
-            if (is_null($files)) {
-                return $data;
-            }
-
-            if (!is_array($files)) {
-                return $this->putFile($type, $files);
-            }
-
-            foreach ($files as $file) {
-                if ($this->checkFile($type, $old_file)) {
-                    $this->deleteFile($type, $old_file);
-
-                    return $this->updateSingleFile($type, $file, $old_file);
-                } else {
-                    $data[] = $this->putFile($type, $file);
-                }
-            }
-
-            return $data;
-        } catch (\Throwable $th) {
-            $this->sendReportLog('error', $th->getMessage());
-
-            return $data;
         }
     }
 }
