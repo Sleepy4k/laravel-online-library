@@ -17,7 +17,7 @@ class RegisterRequest extends WebRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'age' => ['required', 'integer', 'min:1', 'max:150'],
-            'email' => ['required', 'email:dns', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'string', 'email:dns', 'max:255', 'unique:users,email'],
             'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
             'gender' => ['required', 'string', 'max:255', new GenderRule],
             'address' => ['required', 'string'],
