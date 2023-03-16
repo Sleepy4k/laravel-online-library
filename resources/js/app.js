@@ -7,6 +7,7 @@ import "../css/fontawesome.css";
 // js
 import "./mazerapp";
 import "./swal";
+import "./image";
 import "./horizontal-layout";
 import "./form-select";
 import "./bootstrap";
