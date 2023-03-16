@@ -331,6 +331,14 @@ return [
             ]
         ],
         [
+            'group' => 'rule',
+            'key' => 'role.message',
+            'text' => [
+                'id' => 'Data peran tidak valid',
+                'en' => 'Invalid role data'
+            ]
+        ],
+        [
             'group' => 'table',
             'key' => 'empty.table',
             'text' => [
