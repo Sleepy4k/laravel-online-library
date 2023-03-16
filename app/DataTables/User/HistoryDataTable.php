@@ -40,7 +40,7 @@ class HistoryDataTable extends DataTable
      */
     public function query(Borrow $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('user_id', auth()->user()->id)->newQuery();
     }
 
     /**
