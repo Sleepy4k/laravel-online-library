@@ -85,15 +85,18 @@ Route::middleware('auth')->group(function () {
                 'permissions' => 'Admin\PermissionController',
                 'application' => 'Admin\ApplicationController',
             ]);
+
+            Route::resource('application', 'Admin\ApplicationController')->only('index', 'create', 'store');
         });
 
         Route::prefix('audit')->group(function () {
             Route::resources([
-                'auth' => 'Admin\AuthController',
-                'model' => 'Admin\ModelController',
                 'query' => 'Admin\QueryController',
                 'system' => 'Admin\SystemController',
             ], ['only' => ['index', 'show']]);
+
+            Route::get('auth', 'Admin\AuthController')->name('auth');
+            Route::get('model', 'Admin\ModelController')->name('model');
         });
     });
 });
