@@ -4,7 +4,7 @@
         @includeIf('partials.head.meta')
         @includeIf('partials.head.title')
         @includeIf('partials.head.icon')
-        @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/swal.js', 'resources/css/fontawesome.css', 'resources/css/iconly.css', 'resources/js/form-select.js'])
+        @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/swal.js', 'resources/css/fontawesome.css', 'resources/css/iconly.css', 'resources/js/form-select.js', 'resources/js/image.js'])
         @stack('addon-css')
     </head>
     <body>

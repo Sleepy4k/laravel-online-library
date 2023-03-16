@@ -7,7 +7,7 @@
 @endonce
 
 @section('page-content')
-    <form action="{{ route('admin.books.store') }}" method="POST">
+    <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
@@ -17,7 +17,10 @@
 
         <div class="form-group">
             <label for="image">Book Cover</label>
-            <input type="file" id="image" name="image" class="form-control" accept="image/*" required autofocus>
+            <div>
+                <img src="{{ old('image') }}" class="show-image-cover img-fluid mb-3 col-sm-5" style="max-width: 12.5em; max-height: 12.5em;">
+                <input type="file" id="image" name="image" class="form-control logo-cover" accept="image/*" required autofocus>
+            </div>
         </div>
 
         <div class="form-group">

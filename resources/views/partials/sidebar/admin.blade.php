@@ -49,31 +49,31 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.categories.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Book Categories</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.authors.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Book Authors</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.publishers.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Book Publishers</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.loans') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Book Loans</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.histories') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Loans History</span>
                     </a>
