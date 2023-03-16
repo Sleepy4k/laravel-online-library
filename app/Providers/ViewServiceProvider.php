@@ -24,7 +24,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer(['partials.footer.user', 'partials.footer.admin', 'partials.head.meta', 'partials.head.title', 'partials.head.icon'], function ($view) {
+        view()->composer(['partials.footer.user', 'partials.footer.admin', 'partials.head.meta', 'partials.head.title', 'partials.head.icon', 'partials.form.admin.application.*'], function ($view) {
             $view->with('meta', cache()->get('application.1'));
         });
     }

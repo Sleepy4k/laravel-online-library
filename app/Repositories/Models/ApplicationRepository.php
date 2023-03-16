@@ -42,7 +42,11 @@ class ApplicationRepository extends EloquentRepository implements ApplicationInt
             $model = $this->findById($modelId);
 
             if (array_key_exists('app_icon', $payload)) {
-                $payload['app_icon'] = $this->updateSingleFile('image', $payload['app_icon'], $model->app_icon);
+                if ($model->app_icon) {
+                    $payload['app_icon'] = $this->updateSingleFile('image', $payload['app_icon'], $model->app_icon);
+                } else {
+                    $payload['app_icon'] = $this->saveSingleFile('image', $payload['app_icon']);
+                }
             }
 
             return $model->update($payload);
